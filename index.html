@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escape to Tuscany</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: #f6f1e6;
+    }
+
+    .banner {
+      container-type: inline-size;
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1774 / 887;
+      overflow: hidden;
+      background: #f6f1e6;
+    }
+
+    .photo,
+    .frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .photo {
+      object-fit: cover;
+      object-position: 58% 42%;
+    }
+
+    .frame {
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .logo,
+    .copy {
+      position: absolute;
+      z-index: 2;
+      color: #fff;
+    }
+
+    .logo {
+      top: 4.6%;
+      right: 2.6%;
+      font-family: Cinzel, "Times New Roman", serif;
+      font-weight: 600;
+      font-size: 1.55cqi;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .copy {
+      left: 6.6%;
+      bottom: 15%;
+      width: 42%;
+    }
+
+    .kicker {
+      font-family: Cinzel, "Times New Roman", serif;
+      font-weight: 600;
+      font-size: 2.05cqi;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    h1 {
+      margin-top: 0.02em;
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 700;
+      font-size: 6.15cqi;
+      line-height: 0.86;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #fff6c9 0%, #f6d056 24%, #e2ae2e 52%, #fff1b0 68%, #c89022 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-stroke: 0.6px #6e4e12;
+      filter: drop-shadow(0 1px 0 #7a5610) drop-shadow(0 2px 3px rgba(40, 22, 0, 0.55));
+    }
+
+    .sub {
+      margin-top: 0.38em;
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 500;
+      font-size: 1.95cqi;
+      letter-spacing: 0.01em;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+    }
+
+    .offers {
+      width: fit-content;
+      max-width: 100%;
+      margin-top: 0.7em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.42em;
+    }
+
+    .price {
+      display: flex;
+      width: 100%;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.32em;
+      padding: 0.24em 1.15em 0.3em;
+      /* border-radius: 999px; */
+      border: 1px solid #a67c22;
+      background:
+        linear-gradient(105deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0) 38%),
+        linear-gradient(180deg, #fff3c0 0%, #f6d056 28%, #e0aa2c 62%, #c8921e 100%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 0 rgba(122, 82, 16, 0.35), 0 6px 14px rgba(0, 0, 0, 0.22);
+      color: #3a2808;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 2.25cqi;
+      font-weight: 500;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .price strong {
+      font-size: 1.18em;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .save {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.2em 0.95em 0.24em;
+      /* border-radius: 999px; */
+      border: 1.5px solid #f0d56a;
+      background: rgba(8, 32, 26, 0.28);
+      color: #fff6d4;
+      box-shadow: inset 0 1px 0 rgba(255, 236, 170, 0.35);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.7cqi;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      line-height: 1;
+    }
+
+    .about {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1536 / 680;
+      overflow: hidden;
+      background: #03372a;
+      color: #3a3a3a;
+    }
+
+    .about-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+
+    .about-container {
+      position: absolute;
+      left: 50%;
+      top: 4%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      width: min(980px, 90%);
+      text-align: center;
+      z-index: 1;
+    }
+
+    .about h2,
+    .about p,
+    .btn-enquire {
+      font-family: Tinos, "Times New Roman", Times, serif;
+    }
+
+    .about h2 {
+      font-weight: 700;
+      font-size: clamp(32px, 3.6vw, 48px);
+      line-height: 1.28;
+      color: #1a1a1a;
+    }
+
+    .about p {
+      margin: 12px auto 0;
+      max-width: 860px;
+      font-size: clamp(18px, 1.6vw, 22px);
+      font-weight: 400;
+      line-height: 1.55;
+      color: #6d6d6d;
+    }
+
+    .about-enquire {
+      position: absolute;
+      left: 50%;
+      bottom: 5.5%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .btn-enquire {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 22px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-decoration: none;
+      text-transform: uppercase;
+      background: #6e532c;
+      color: #fff;
+      border: none;
+    }
+
+    .btn-enquire:hover {
+      background: #5c4524;
+    }
+
+    .amenities {
+      width: min(760px, 100%);
+      margin: 22px auto 0;
+      text-align: center;
+      color: #1a4032;
+    }
+
+    .amenities-leaf {
+      position: absolute;
+      bottom: 0;
+      z-index: 1;
+      width: min(240px, 20vw);
+      height: auto;
+      color: #2f7d58;
+      pointer-events: none;
+    }
+
+    .amenities-leaf.left {
+      left: 0;
+    }
+
+    .amenities-leaf.right {
+      right: 0;
+      transform: scaleX(-1);
+    }
+
+    .amenities-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin: 0;
+      font-family: Tinos, "Times New Roman", Times, serif;
+      font-size: clamp(28px, 2.6vw, 36px);
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      color: #1a1a1a;
+    }
+
+    .amenities-title span {
+      width: 72px;
+      height: 1px;
+      background: #c4a15a;
+    }
+
+    .amenities-list {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .amenities-list li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 34px;
+      border-left: 1px solid rgba(176, 138, 62, 0.75);
+      font-family: Tinos, "Times New Roman", Times, serif;
+      font-size: clamp(16px, 1.5vw, 20px);
+      line-height: 1.15;
+      text-align: left;
+      color: #1a4032;
+    }
+
+    .amenities-list li:first-child {
+      border-left: 0;
+    }
+
+    .amenities-list svg {
+      width: 40px;
+      height: 40px;
+      flex: none;
+      color: #b08a3e;
+    }
+
+    @media (max-width: 900px) {
+      .about {
+        display: flex;
+        flex-direction: column;
+        aspect-ratio: auto;
+        background: #f6f1e6;
+      }
+
+      .about-bg {
+        position: relative;
+        inset: auto;
+        order: 1;
+        height: 180px;
+        object-fit: cover;
+        object-position: center 18%;
+      }
+
+      .about-container {
+        order: 2;
+        position: relative;
+        left: auto;
+        top: auto;
+        bottom: auto;
+        transform: none;
+        width: min(720px, 92%);
+        margin: 0 auto;
+        padding: 28px 12px 32px;
+        background: #f6f1e6;
+      }
+
+      .amenities {
+        margin-top: 22px;
+        background: transparent;
+      }
+
+      .about-enquire {
+        order: 3;
+        position: relative;
+        left: auto;
+        bottom: auto;
+        transform: none;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 28px 16px 32px;
+        background: #03372a;
+      }
+
+      .amenities-list li {
+        padding: 0 10px;
+        gap: 8px;
+        font-size: 15px;
+      }
+
+      .amenities-list svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      .amenities-title span {
+        width: 28px;
+      }
+
+      .amenities-leaf {
+        display: none;
+      }
+    }
+
+    .site-footer {
+      container-type: inline-size;
+      position: relative;
+      width: 100%;
+      margin-top: 0;
+      background: #f6f1e6;
+      color: #fff;
+    }
+
+    .footer-frame {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .footer-logo {
+      position: absolute;
+      left: 8%;
+      top: 8%;
+      width: 15%;
+      height: auto;
+    }
+
+    .footer-nav {
+      position: absolute;
+      right: 5%;
+      top: 22%;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .footer-col {
+      min-width: 12cqi;
+      padding: 0 2.2cqi;
+      border-left: 1px solid rgba(215, 181, 106, 0.85);
+    }
+
+    .footer-col:first-child {
+      border-left: 0;
+    }
+
+    .footer-col h3 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.55cqi;
+      margin-bottom: 1.1cqi;
+      font-family: "Segoe UI", Calibri, sans-serif;
+      font-size: 0.92cqi;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e4c98a;
+    }
+
+    .diamond {
+      width: 0.55cqi;
+      height: 0.55cqi;
+      background: #e4c98a;
+      transform: rotate(45deg);
+    }
+
+    .footer-col a,
+    .footer-col span {
+      display: block;
+      margin-top: 0.22cqi;
+      font-family: "Segoe UI", Calibri, sans-serif;
+      font-size: 1.02cqi;
+      line-height: 1.25;
+      color: #f7f3ea;
+      text-decoration: none;
+    }
+
+    .footer-col a:hover {
+      color: #e4c98a;
+    }
+
+    .mail-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6cqi;
+    }
+
+    .mail-link svg {
+      width: 1.5cqi;
+      height: 1.5cqi;
+      flex: none;
+      color: #e4c98a;
+    }
+
+    .footer-copy {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      bottom: 5%;
+      padding-top: 0.7cqi;
+      border-top: 1px solid rgba(215, 181, 106, 0.8);
+      font-family: "Segoe UI", Calibri, sans-serif;
+      font-size: 0.82cqi;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-align: center;
+      text-transform: uppercase;
+      color: #f3ead4;
+    }
+
+    @media (max-width: 760px) {
+      .footer-logo {
+        left: 6%;
+        top: 6%;
+        width: 34%;
+      }
+
+      .footer-nav {
+        right: 3%;
+        top: 36%;
+      }
+
+      .footer-col {
+        min-width: 0;
+        padding: 0 8px;
+      }
+
+      .footer-col h3,
+      .footer-col a,
+      .footer-col span,
+      .footer-copy {
+        font-size: 10px;
+      }
+
+      .diamond {
+        width: 5px;
+        height: 5px;
+      }
+
+      .mail-link svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      .footer-copy {
+        letter-spacing: 0.06em;
+      }
+    }
+
+    .heritage {
+      background: #f6f1e6 url("images/bg.png") center center / cover no-repeat;
+      text-align: center;
+      padding: 58px 24px 64px;
+    }
+
+    .heritage-mark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .heritage-mark span {
+      width: min(160px, 16vw);
+      height: 1px;
+      background: #c6a15a;
+    }
+
+    .heritage-crown {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #1c3b32;
+      display: grid;
+      place-items: center;
+      flex: none;
+    }
+
+    .heritage-crown svg {
+      width: 26px;
+      height: 26px;
+      display: block;
+    }
+
+    .heritage h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 600;
+      font-size: clamp(28px, 3.5vw, 44px);
+      line-height: 1.2;
+      color: #1c3b32;
+    }
+
+    .heritage h2 span {
+      color: #b8893d;
+    }
+
+    .heritage p {
+      max-width: 760px;
+      margin: 14px auto 0;
+      font-family: Tinos, "Times New Roman", Times, serif;
+      font-size: clamp(16px, 1.6vw, 20px);
+      line-height: 1.55;
+      color: #2b2b2b;
+    }
+
+    .discover {
+      --ink: #1a4032;
+      --cream: #fbf7f0;
+      --gold: #b17e41;
+      background: #f6f1e6;
+      padding: 5em;
+    }
+
+    .discover-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: min(1140px, 100%);
+      margin: 0 auto;
+      min-height: 520px;
+      overflow: hidden;
+      background: var(--cream);
+    }
+
+    .discover-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 78% center;
+    }
+
+    .discover-container::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, var(--cream) 0%, var(--cream) 40%, rgba(251, 247, 240, 0.96) 52%, rgba(251, 247, 240, 0.42) 66%, rgba(251, 247, 240, 0) 78%);
+      pointer-events: none;
+    }
+
+    .discover-copy {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: min(580px, 56%);
+      padding: 48px 28px 46px 56px;
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .discover-leaf {
+      display: block;
+      width: 58px;
+      height: 30px;
+      margin-bottom: 14px;
+      color: var(--gold);
+    }
+
+    .discover h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(34px, 3.15vw, 44px);
+      line-height: 1.02;
+      color: var(--ink);
+    }
+
+    .discover h2 span {
+      display: block;
+    }
+
+    .discover h2 .discover-kicker {
+      /* font-style: italic; */
+      font-weight: 500;
+      letter-spacing: 0.005em;
+    }
+
+    .discover h2 span + span {
+      margin-top: 4px;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 1.78em;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      color: #906127;
+    }
+
+    .discover-copy > p {
+      margin-top: 18px;
+      max-width: 460px;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+
+    .discover-copy p strong {
+      font-weight: 700;
+    }
+
+    .discover-dates {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      margin-top: 22px;
+      padding: 11px 16px 12px;
+      border: 1.5px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.045em;
+      line-height: 1;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .discover-dates:hover {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .discover-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .discover-travel,
+    .discover-note {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0;
+      max-width: none;
+      color: var(--ink);
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      line-height: 1.3;
+    }
+
+    .discover-travel {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .discover-note {
+      font-size: 17.5px;
+      font-weight: 400;
+    }
+
+    .discover-travel svg,
+    .discover-note svg {
+      width: 22px;
+      height: 22px;
+      flex: none;
+    }
+
+    @media (max-width: 800px) {
+      .discover {
+        padding: 36px 16px 40px;
+      }
+
+      .discover-container {
+        flex-direction: column;
+        min-height: 0;
+        align-items: stretch;
+      }
+
+      .discover-photo {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        object-position: center 40%;
+      }
+
+      .discover-container::after {
+        display: none;
+      }
+
+      .discover h2 {
+        font-size: 30px;
+      }
+
+      .discover-copy > p,
+      .discover-travel,
+      .discover-note {
+        font-size: 16px;
+      }
+
+      .discover-copy {
+        width: auto;
+        padding: 28px 22px 32px;
+        background: var(--cream);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="banner" id="top">
+    <img class="photo" src="images/banner.png" alt="The Leaning Tower of Pisa and cathedral at sunset">
+    <img class="frame" alt="" data-src="images/frame.png">
+    <!-- <p class="logo">Your Logo</p> -->
+    <div class="copy">
+      <p class="kicker">Escape to</p>
+      <h1>Tuscany</h1>
+      <p class="sub">4-Night Romantic Break for Two</p>
+      <div class="offers">
+        <p class="price"><span>Just</span> <strong>£120</strong> <span>Per Couple</span></p>
+        <p class="save">Save £600</p>
+      </div>
+    </div>
+  </main>
+  <section class="heritage" id="heritage">
+    <div class="heritage-mark">
+      <span></span>
+      <div class="heritage-crown">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path fill="#e6c98a" d="M5 23.5h22v2.2H5z"/>
+          <path fill="#e6c98a" d="M6.2 22.2 8.4 12.4l4.2 4.4L16 8.2l3.4 8.6 4.2-4.4 2.2 9.8z"/>
+          <circle cx="8.4" cy="11.2" r="1.5" fill="#e6c98a"/>
+          <circle cx="16" cy="7.2" r="1.5" fill="#e6c98a"/>
+          <circle cx="23.6" cy="11.2" r="1.5" fill="#e6c98a"/>
+        </svg>
+      </div>
+      <span></span>
+    </div>
+    <h2><span>30+</span> Years of Unmatched Hospitality</h2>
+    <p>With over 30 years of expertise, we've been creating unforgettable escapes across a collection of handpicked destinations around the world.</p>
+  </section>
+  <section class="discover" id="discover">
+    <div class="discover-container">
+      <img class="discover-photo" src="images/tuscany.png" alt="Tuscan villa terrace overlooking the hills at sunset">
+      <div class="discover-copy">
+        <svg class="discover-leaf" viewBox="0 0 68 32" aria-hidden="true">
+          <path d="M6 27c14-2 26-9 38-20" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/>
+          <path d="M16 24.5c.4-4.8 3.6-8 7.6-9.6-3.4 3.2-5.6 6.4-6.8 10z" fill="currentColor"/>
+          <path d="M14.5 21c-2.2-3.2-2.4-6.4-.4-9.2 1.6 3.2 1.4 6.2.4 9.2z" fill="currentColor"/>
+          <path d="M26 19.5c1.6-4.2 5-6.6 8.8-7.4-3.8 2.2-6.4 4.8-8 8z" fill="currentColor"/>
+          <path d="M24.5 16.2c-1.6-3-1.4-5.8.6-8.2 1.2 2.8.8 5.4-.6 8.2z" fill="currentColor"/>
+          <path d="M36 14.2c2.2-3.6 5.8-5.2 9.6-5.6-4 1.6-6.8 3.8-8.6 6.8z" fill="currentColor"/>
+          <path d="M45.5 10c2-2.4 4.8-3.4 8-3.4-3.2 1.2-5.6 2.6-7.2 4.6z" fill="currentColor"/>
+        </svg>
+        <h2><span class="discover-kicker">Discover the beauty of</span><span>Tuscany</span></h2>
+        <p>Discover the beauty of Tuscany with a four-night stay at <strong>Borgo di Colleoli</strong>, a historic estate surrounded by rolling hills and beautiful Italian countryside.</p>
+        <!-- <a class="discover-dates" href="#enquire">[CHECK AVAILABLE DATES]</a> -->
+        <div class="discover-meta">
+          <p class="discover-travel">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21.2 15.6v-1.7L13.4 9.2V4.2a1.4 1.4 0 0 0-2.8 0v5L2.8 13.9v1.7l7.8-2.4v4.6l-2 1.5v1.2l3.4-.9 3.4.9v-1.2l-2-1.5v-4.6l7.8 2.4z" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linejoin="round" stroke-linecap="round"/>
+            </svg>
+            Travel by December 2027
+          </p>
+          <p class="discover-note">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M12 7.6V12l3 1.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Limited promotional availability
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="about" id="about">
+    <img class="about-bg" src="images/about.png" alt="">
+    <div class="about-container">
+      <h2>Tuscany: The Perfect Blend of Culture,<br>Countryside &amp; Italian Charm</h2>
+      <p>Set among the rolling hills and olive groves of the Tuscan countryside, Borgo di Colleoli offers the perfect base for discovering one of Italy’s most beautiful regions.</p>
+      <p>Explore the Renaissance streets of Florence, see the iconic sights of Pisa, discover medieval hill towns and experience the food, culture and landscapes that make Tuscany so special.</p>
+      <p>Whether you want to explore, unwind or simply enjoy the slower pace of Italian life,<br>this is Tuscany at its best.</p>
+      <div class="amenities">
+        <h3 class="amenities-title"><span></span>Amenities<span></span></h3>
+        <ul class="amenities-list">
+          <li>
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M17 7v15M25 7v15M17 12h8M17 17h8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M7 30c3.2 2.2 5.2 2.2 8.4 0s5.2-2.2 8.4 0 5.2 2.2 8.4 0 5.2-2.2 8.4 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M7 36.5c3.2 2.2 5.2 2.2 8.4 0s5.2-2.2 8.4 0 5.2 2.2 8.4 0 5.2-2.2 8.4 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <span>Swimming<br>Pools</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M15 8c0 5 3.2 7.2 3.2 7.2V38" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 8v9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M26 8v9M30 8v9M34 8v9M26 17h8M30 17v21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <span>Restaurant</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M16 9h16l-2.6 12.2a5.4 5.4 0 0 1-10.8 0L16 9z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M24 26.5V35M17 35h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <span>Wine Bar</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="about-enquire">
+      <a class="btn-enquire" href="#enquire">Enquire Now <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+  <footer class="site-footer">
+    <img class="footer-frame" alt="" data-src="images/footer.png">
+    <img class="footer-logo" alt="Karma Club Experience" data-src="images/logo.png">
+    <nav class="footer-nav" aria-label="Footer">
+      <div class="footer-col">
+        <h3><span class="diamond"></span>Quick Links</h3>
+        <a href="#top">Home</a>
+        <a href="#about">About</a>
+        <a href="#rooms">Room</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#testimonials">Testimonials</a>
+      </div>
+      <div class="footer-col">
+        <h3><span class="diamond"></span>Other Links</h3>
+        <a class="mail-link" href="#enquire">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+            <path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.6"></path>
+          </svg>
+          Enquire Now
+        </a>
+      </div>
+      <div class="footer-col">
+        <h3><span class="diamond"></span>Our Offices</h3>
+        <span>Germany</span>
+        <span>India</span>
+        <span>Indonesia</span>
+        <span>Philippines</span>
+        <span>Singapore</span>
+        <span>UK</span>
+      </div>
+    </nav>
+    <p class="footer-copy">Copyright © Karma Club Experience 2026. All rights reserved.</p>
+  </footer>
+  <script>
+    (function () {
+      var frame = document.querySelector(".frame");
+      var img = new Image();
+      img.onload = function () {
+        frame.src = cutFrame(img);
+      };
+      img.src = frame.getAttribute("data-src");
+
+      var footerFrame = document.querySelector(".footer-frame");
+      var footerImg = new Image();
+      footerImg.onload = function () {
+        footerFrame.src = tintFooter(footerImg);
+      };
+      footerImg.src = footerFrame.getAttribute("data-src");
+
+      var logo = document.querySelector(".footer-logo");
+      var logoImg = new Image();
+      logoImg.onload = function () {
+        logo.src = cutLogo(logoImg);
+      };
+      logoImg.src = logo.getAttribute("data-src");
+
+      function cutFrame(source) {
+        var w = source.width;
+        var h = source.height;
+        var canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext("2d", { willReadFrequently: true });
+        ctx.drawImage(source, 0, 0);
+        var image = ctx.getImageData(0, 0, w, h);
+        var d = image.data;
+        var seen = new Uint8Array(w * h);
+        var q = new Int32Array(w * h);
+        var qe = 0;
+        var qs = 0;
+
+        function clearable(i) {
+          var r = d[i];
+          var g = d[i + 1];
+          var b = d[i + 2];
+          var max = r > g ? r : g;
+          var min = r < g ? r : g;
+          if (b > max) max = b;
+          if (b < min) min = b;
+          if (r - b > 48 && b < 185 && r > 150) return false;
+          if (g > r + 8 && r < 90) return false;
+          if (min < 200) return false;
+          if (max - min > 55) return false;
+          return true;
+        }
+
+        function enq(x, y) {
+          if (x < 0 || y < 0 || x >= w || y >= h) return;
+          var p = y * w + x;
+          if (seen[p]) return;
+          var i = p * 4;
+          if (!clearable(i)) {
+            seen[p] = 2;
+            return;
+          }
+          seen[p] = 1;
+          q[qe++] = p;
+        }
+
+        var x;
+        for (x = 0; x < w; x++) enq(x, 2);
+        var yLimit = (h * 0.62) | 0;
+        var y;
+        for (y = 0; y < yLimit; y += 3) {
+          enq(w - 3, y);
+          enq(2, y);
+        }
+
+        while (qs < qe) {
+          var p = q[qs++];
+          var px = p % w;
+          var py = (p / w) | 0;
+          d[p * 4 + 3] = 0;
+          enq(px + 1, py);
+          enq(px - 1, py);
+          enq(px, py + 1);
+          enq(px, py - 1);
+        }
+
+        var pass;
+        for (pass = 0; pass < 6; pass++) {
+          var extra = [];
+          for (y = 1; y < h - 1; y++) {
+            var row = y * w;
+            for (x = 1; x < w - 1; x++) {
+              var i = (row + x) * 4;
+              if (d[i + 3] === 0) continue;
+              var touch = d[i - 1] === 0 || d[i + 7] === 0 || d[i - w * 4 + 3] === 0 || d[i + w * 4 + 3] === 0;
+              if (!touch) continue;
+              var r = d[i];
+              var g = d[i + 1];
+              var b = d[i + 2];
+              var max = r > g ? r : g;
+              var min = r < g ? r : g;
+              if (b > max) max = b;
+              if (b < min) min = b;
+              if (r - b > 48 && b < 185 && r > 140) continue;
+              if (min < 190) continue;
+              if (max - min > 70) continue;
+              extra.push(i);
+            }
+          }
+          var n;
+          for (n = 0; n < extra.length; n++) d[extra[n] + 3] = 0;
+        }
+
+        ctx.putImageData(image, 0, 0);
+        return canvas.toDataURL("image/png");
+      }
+
+      function cutLogo(source) {
+        var w = source.width;
+        var h = source.height;
+        var canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(source, 0, 0);
+        var image = ctx.getImageData(0, 0, w, h);
+        var d = image.data;
+        var i;
+        for (i = 0; i < d.length; i += 4) {
+          var r = d[i];
+          var g = d[i + 1];
+          var b = d[i + 2];
+          var max = r > g ? r : g;
+          if (b > max) max = b;
+          d[i + 3] = max < 32 ? 0 : Math.min(255, (max - 32) * 5);
+        }
+        ctx.putImageData(image, 0, 0);
+        return canvas.toDataURL("image/png");
+      }
+
+      function tintFooter(source) {
+        var crop = Math.round(source.height * 0.18);
+        var w = source.width;
+        var h = source.height - crop;
+        var canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(source, 0, crop, w, h, 0, 0, w, h);
+        var image = ctx.getImageData(0, 0, w, h);
+        var d = image.data;
+        var i;
+        for (i = 0; i < d.length; i += 4) {
+          var r = d[i];
+          var g = d[i + 1];
+          var b = d[i + 2];
+          var max = r > g ? r : g;
+          if (b > max) max = b;
+          var min = r < g ? r : g;
+          if (b < min) min = b;
+          if (min > 214 && (r - b) < 32 && g > 205) {
+            d[i] = 246;
+            d[i + 1] = 241;
+            d[i + 2] = 230;
+          }
+        }
+        ctx.putImageData(image, 0, 0);
+        return canvas.toDataURL("image/png");
+      }
+    })();
+  </script>
+</body>
+</html>
