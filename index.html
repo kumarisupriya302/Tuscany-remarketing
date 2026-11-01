@@ -15,6 +15,262 @@
       background: #f6f1e6;
     }
 
+    .site-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      width: 100%;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      pointer-events: none;
+    }
+
+    .header-logo,
+    .header-nav,
+    .header-toggle {
+      pointer-events: auto;
+    }
+
+    .header-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 18px;
+      width: min(1200px, calc(100% - 220px));
+      margin: 0 auto 0 0;
+      padding: 0 18px 0 clamp(16px, 3vw, 36px);
+      min-height: clamp(64px, 8.5cqi, 92px);
+      height: clamp(64px, 8.5cqi, 92px);
+    }
+
+    .header-logo {
+      display: inline-flex;
+      align-items: center;
+      z-index: 2;
+      text-decoration: none;
+    }
+
+    .header-logo img {
+      display: block;
+      height: 72px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
+    }
+
+    .header-nav {
+      --menu-h: 44px;
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+      max-width: 100%;
+      height: var(--menu-h);
+      padding: 0 14px;
+      border-radius: 0;
+      background: #1a4032;
+      box-shadow: 0 8px 18px rgba(10, 24, 40, 0.22);
+    }
+
+    .header-nav a {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 12px;
+      color: #fff;
+      font-family: Cinzel, "Times New Roman", serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .header-nav a:not(:last-child)::after {
+      content: "•";
+      position: absolute;
+      right: -2px;
+      color: rgba(210, 220, 230, 0.7);
+      font-size: 10px;
+      pointer-events: none;
+    }
+
+    .header-nav a:hover,
+    .header-nav a.is-active {
+      background: #245443;
+      border-radius: 0;
+    }
+
+    .header-nav a:hover::after,
+    .header-nav a.is-active::after {
+      opacity: 0;
+    }
+
+    .banner-cta {
+      --menu-h: 44px;
+      position: absolute;
+      top: calc((clamp(64px, 8.5cqi, 92px) - var(--menu-h)) / 2);
+      right: 3.2%;
+      z-index: 60;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: var(--menu-h);
+      padding: 0;
+      pointer-events: auto;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .banner-cta .btn-enquire {
+      height: 100%;
+      padding: 0 clamp(16px, 2cqi, 28px);
+      font-size: clamp(11px, 1.15cqi, 14px);
+      white-space: nowrap;
+    }
+
+    .header-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(26, 64, 50, 0.35);
+      background: rgba(246, 241, 230, 0.9);
+      color: #1a4032;
+      cursor: pointer;
+    }
+
+    .header-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 4px auto;
+      background: currentColor;
+    }
+
+    .header-nav-enquire {
+      display: none;
+    }
+
+    .photo-mobile {
+      display: none;
+    }
+
+    .copy-leaf {
+      display: none;
+    }
+
+    @media (max-width: 980px) {
+      .header-inner {
+        width: 100%;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        padding: 10px 14px 0;
+        height: auto;
+        min-height: 0;
+      }
+
+      .header-logo {
+        justify-self: start;
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .header-logo img {
+        height: clamp(48px, 14vw, 64px);
+        filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
+      }
+
+      .header-toggle {
+        display: inline-grid;
+        place-items: center;
+        justify-self: end;
+        align-self: start;
+        grid-column: 2;
+        grid-row: 1;
+        z-index: 3;
+        width: 40px;
+        height: 40px;
+        margin-top: 4px;
+        border: 0;
+        background: transparent;
+        color: #fff;
+        box-shadow: none;
+      }
+
+      .header-toggle span {
+        width: 22px;
+        height: 2px;
+        margin: 3px auto;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+      }
+
+      .header-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        right: auto;
+        width: 100vw;
+        max-width: 100vw;
+        margin-left: -50vw;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        height: auto;
+        padding: 12px 16px 16px;
+        border-radius: 0;
+        background: #1a4032;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
+      }
+
+      .header-inner.is-open .header-nav {
+        display: flex;
+      }
+
+      .header-nav a {
+        justify-content: center;
+        padding: 12px 14px;
+      }
+
+      .header-nav a::after {
+        display: none;
+      }
+
+      .header-nav-enquire {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 6px;
+        padding: 12px 14px;
+        border: 1px solid #a67c22;
+        background:
+          linear-gradient(105deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0) 38%),
+          linear-gradient(180deg, #fff3c0 0%, #f6d056 28%, #e0aa2c 62%, #c8921e 100%);
+        color: #1a4032;
+        font-family: Tinos, "Times New Roman", Times, serif;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .banner-cta,
+      .banner-cta.btn-enquire {
+        display: none;
+      }
+    }
+
     .banner {
       container-type: inline-size;
       position: relative;
@@ -153,6 +409,93 @@
       line-height: 1;
     }
 
+    @media (max-width: 980px) {
+      .banner {
+        aspect-ratio: 1193 / 1319;
+        max-height: none;
+      }
+
+      .photo {
+        display: none;
+      }
+
+      .photo-mobile {
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      .frame {
+        display: none;
+      }
+
+      .copy {
+        left: 50%;
+        right: auto;
+        top: 44%;
+        bottom: auto;
+        width: min(84%, 320px);
+        transform: translateX(-50%);
+        text-align: center;
+        z-index: 3;
+      }
+
+      .kicker {
+        font-size: clamp(12px, 3.4vw, 14px);
+        letter-spacing: 0.34em;
+      }
+
+      .banner h1,
+      .copy h1,
+      h1 {
+        margin-top: 0.06em;
+        font-size: clamp(42px, 12.5vw, 54px);
+        line-height: 0.88;
+        letter-spacing: 0.02em;
+      }
+
+      .copy-leaf {
+        display: block;
+        width: 34px;
+        height: 16px;
+        margin: 8px auto 0;
+        background:
+          radial-gradient(ellipse 55% 70% at 28% 50%, #e6c98a 0 55%, transparent 56%),
+          radial-gradient(ellipse 55% 70% at 72% 50%, #e6c98a 0 55%, transparent 56%),
+          linear-gradient(90deg, transparent 46%, #d4b36a 46%, #d4b36a 54%, transparent 54%);
+        opacity: 0.95;
+      }
+
+      .sub {
+        margin-top: 0.4em;
+        font-size: clamp(15px, 4.2vw, 17px);
+        white-space: nowrap;
+      }
+
+      .offers {
+        margin: 0.9em auto 0;
+        width: min(100%, 280px);
+        gap: 0.5em;
+      }
+
+      .price {
+        width: 100%;
+        font-size: clamp(16px, 4.5vw, 19px);
+        padding: 0.48em 0.85em 0.52em;
+        white-space: nowrap;
+      }
+
+      .save {
+        font-size: clamp(14px, 3.8vw, 16px);
+        padding: 0.34em 1.15em 0.38em;
+        background: rgba(8, 40, 32, 0.42);
+      }
+    }
+
     .about {
       position: relative;
       width: 100%;
@@ -212,24 +555,41 @@
       z-index: 2;
     }
 
-    .btn-enquire {
+    .btn-enquire,
+    .btn-dates,
+    .video-enquire {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 13px 22px;
+      gap: 10px;
+      padding: 14px 28px;
+      border: 1px solid #a67c22;
+      border-radius: 0;
+      background:
+        linear-gradient(105deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0) 38%),
+        linear-gradient(180deg, #fff3c0 0%, #f6d056 28%, #e0aa2c 62%, #c8921e 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -2px 0 rgba(122, 82, 16, 0.35),
+        0 6px 14px rgba(0, 0, 0, 0.18);
+      color: #1a4032;
+      font-family: Tinos, "Times New Roman", Times, serif;
       font-size: 15px;
       font-weight: 700;
       letter-spacing: 0.14em;
+      line-height: 1;
       text-decoration: none;
       text-transform: uppercase;
-      background: #6e532c;
-      color: #fff;
-      border: none;
+      text-shadow: 0 1px 0 rgba(255, 248, 220, 0.55);
     }
 
-    .btn-enquire:hover {
-      background: #5c4524;
+    .btn-enquire:hover,
+    .btn-dates:hover,
+    .video-enquire:hover {
+      background:
+        linear-gradient(105deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 38%),
+        linear-gradient(180deg, #fff8d4 0%, #f0c84a 28%, #d49a22 62%, #b88418 100%);
+      color: #0f2a22;
     }
 
     .amenities {
@@ -377,6 +737,629 @@
       .amenities-leaf {
         display: none;
       }
+    }
+
+    .accommodation {
+      --acc-ink: #1a2a3a;
+      width: 100%;
+      padding: clamp(48px, 7vw, 88px) clamp(20px, 4vw, 48px);
+      background: #f6f1e6;
+      color: var(--acc-ink);
+    }
+
+    .accommodation-inner {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.9fr) minmax(280px, 1.1fr);
+      align-items: center;
+      gap: clamp(28px, 5vw, 72px);
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .accommodation-photos {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+      min-height: clamp(340px, 40vw, 430px);
+      padding: 0 72px 78px 0;
+      box-sizing: border-box;
+    }
+
+    .polaroid {
+      position: absolute;
+      margin: 0;
+    }
+
+    .polaroid-main {
+      top: 0;
+      left: 0;
+      width: calc(100% - 72px);
+      max-width: 360px;
+      height: clamp(250px, 30vw, 330px);
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: 0 14px 34px rgba(40, 28, 12, 0.18);
+    }
+
+    .polaroid-main img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+    }
+
+    .polaroid-side {
+      right: 0;
+      bottom: 0;
+      width: min(210px, 52%);
+      padding: 16px 14px 18px;
+      z-index: 2;
+      background:
+        linear-gradient(160deg, #fff8e8 0%, #f3e2bf 48%, #e8cfa0 100%);
+      border: 1px solid rgba(176, 138, 62, 0.45);
+      box-shadow: 0 16px 36px rgba(40, 28, 12, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+      text-align: center;
+      color: #1a2a3a;
+    }
+
+    .offer-card-title {
+      margin: 0 0 8px;
+      font-family: Cinzel, "Times New Roman", serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #6e532c;
+    }
+
+    .offer-card-price {
+      margin: 0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(24px, 2.5vw, 30px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: #1a4032;
+    }
+
+    .offer-card-price span {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.48em;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: #3a454f;
+    }
+
+    .offer-card-night {
+      margin: 10px 0 0;
+      display: inline-block;
+      padding: 5px 10px;
+      background: #1a4032;
+      color: #f6e7c2;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .offer-card-tag {
+      margin: 10px 0 0;
+      font-family: Tinos, "Times New Roman", Times, serif;
+      font-size: 14px;
+      font-style: italic;
+      color: #6e532c;
+    }
+
+    .accommodation-copy {
+      max-width: 520px;
+    }
+
+    .accommodation-eyebrow {
+      margin: 0 0 10px;
+      font-family: Cinzel, "Times New Roman", serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #4a5560;
+    }
+
+    .accommodation-copy h2 {
+      margin: 0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(34px, 4vw, 48px);
+      line-height: 1.1;
+      color: var(--acc-ink);
+    }
+
+    .accommodation-rule {
+      display: block;
+      width: 72px;
+      height: 1px;
+      margin: 14px 0 18px;
+      background: rgba(26, 42, 58, 0.55);
+    }
+
+    .accommodation-copy > p {
+      margin: 0 0 26px;
+      font-family: Tinos, "Times New Roman", Times, serif;
+      font-size: clamp(16px, 1.45vw, 18px);
+      line-height: 1.55;
+      color: #243040;
+    }
+
+    @media (max-width: 900px) {
+      .accommodation-inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .accommodation-photos {
+        min-height: 380px;
+        max-width: 420px;
+        margin: 0 auto;
+        width: 100%;
+        padding: 0 56px 70px 0;
+      }
+
+      .accommodation-copy {
+        max-width: none;
+      }
+
+      .polaroid-main {
+        width: calc(100% - 56px);
+        height: 280px;
+      }
+
+      .polaroid-side {
+        width: 200px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .accommodation-photos {
+        min-height: 340px;
+        padding: 0 28px 64px 0;
+      }
+
+      .polaroid-main {
+        width: calc(100% - 28px);
+        height: 230px;
+      }
+
+      .polaroid-side {
+        width: 170px;
+        padding: 14px 10px 16px;
+      }
+
+      .offer-card-price {
+        font-size: 24px;
+      }
+    }
+
+    .note-section {
+      width: 100%;
+      padding: clamp(36px, 5vw, 64px) clamp(18px, 4vw, 48px);
+      background:
+        linear-gradient(180deg, rgba(232, 217, 192, 0.88), rgba(236, 224, 200, 0.92)),
+        #e8d9c0 url("images/bg.png") center center / cover no-repeat;
+    }
+
+    .note-paper {
+      position: relative;
+      width: min(920px, 100%);
+      margin: 18px auto 0;
+      padding: clamp(28px, 4vw, 40px) clamp(24px, 4vw, 48px) clamp(28px, 4vw, 42px) clamp(28px, 4vw, 44px);
+      background: #faf6ee;
+      border-left: 3px solid #6e532c;
+      box-shadow: 0 18px 40px rgba(40, 28, 12, 0.14);
+      color: #1a4032;
+      clip-path: polygon(
+        0% 1.2%, 1.2% 0%, 3.4% 1.4%, 5.8% 0.2%, 8.4% 1.6%, 11% 0%, 14% 1.3%, 17% 0.3%, 20% 1.5%,
+        23.5% 0.1%, 27% 1.4%, 30.5% 0%, 34% 1.2%, 37.5% 0.4%, 41% 1.5%, 44.5% 0.2%, 48% 1.3%,
+        51.5% 0%, 55% 1.4%, 58.5% 0.3%, 62% 1.5%, 65.5% 0.1%, 69% 1.3%, 72.5% 0.2%, 76% 1.4%,
+        79.5% 0%, 83% 1.5%, 86.5% 0.3%, 90% 1.2%, 93.5% 0.1%, 96.5% 1.4%, 98.8% 0.2%, 100% 1.5%,
+        99.2% 4%, 100% 7.5%, 98.8% 11%, 100% 15%, 99% 19%, 100% 23.5%, 98.7% 28%, 100% 32.5%,
+        99.1% 37%, 100% 41.5%, 98.8% 46%, 100% 50.5%, 99% 55%, 100% 59.5%, 98.7% 64%, 100% 68.5%,
+        99.2% 73%, 100% 77.5%, 98.8% 82%, 100% 86.5%, 99% 91%, 100% 95%, 98.9% 98%, 100% 100%,
+        97% 98.6%, 93.5% 100%, 90% 98.5%, 86.5% 100%, 83% 98.6%, 79.5% 99.8%, 76% 98.4%,
+        72.5% 100%, 69% 98.5%, 65.5% 99.8%, 62% 98.4%, 58.5% 100%, 55% 98.6%, 51.5% 99.8%,
+        48% 98.5%, 44.5% 100%, 41% 98.4%, 37.5% 99.8%, 34% 98.5%, 30.5% 100%, 27% 98.6%,
+        23.5% 99.8%, 20% 98.4%, 17% 100%, 14% 98.5%, 11% 99.8%, 8.4% 98.4%, 5.8% 100%,
+        3.4% 98.6%, 1.2% 99.8%, 0% 98.5%,
+        0.8% 95%, 0% 91%, 1.2% 86.5%, 0% 82%, 1% 77.5%, 0% 73%, 1.3% 68.5%, 0% 64%,
+        1.1% 59.5%, 0% 55%, 1.2% 50.5%, 0% 46%, 1% 41.5%, 0% 37%, 1.3% 32.5%, 0% 28%,
+        1.1% 23.5%, 0% 19%, 1.2% 15%, 0% 11%, 0.9% 7.5%, 0% 4%
+      );
+    }
+
+    .note-tape {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      width: 86px;
+      height: 30px;
+      transform: translateX(-50%) rotate(-3deg);
+      background: linear-gradient(180deg, rgba(255, 250, 238, 0.72), rgba(232, 214, 176, 0.48));
+      border: 1px solid rgba(176, 138, 62, 0.22);
+      box-shadow: 0 2px 6px rgba(40, 28, 12, 0.12);
+      z-index: 2;
+    }
+
+    .note-title {
+      margin: 0 0 16px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(22px, 2.4vw, 28px);
+      font-weight: 600;
+      color: #1a4032;
+    }
+
+    .note-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .note-list li {
+      position: relative;
+      padding: 0 0 12px 18px;
+      font-family: Tinos, "Times New Roman", Times, serif;
+      font-size: clamp(16px, 1.45vw, 19px);
+      line-height: 1.55;
+      color: #1a4032;
+    }
+
+    .note-list li:last-child {
+      padding-bottom: 0;
+    }
+
+    .note-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.68em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #b08a3e;
+    }
+
+    .note-list li strong {
+      font-weight: 700;
+    }
+
+    .note-list li em {
+      font-style: italic;
+    }
+
+    @media (max-width: 560px) {
+      .note-paper {
+        padding: 26px 18px 24px 20px;
+      }
+
+      .note-tape {
+        width: 68px;
+        height: 24px;
+        top: -11px;
+      }
+    }
+
+    .gallery {
+      width: 100%;
+      padding: clamp(28px, 4vw, 48px) clamp(16px, 3.5vw, 48px) clamp(32px, 4.5vw, 56px);
+      background: #f6f1e6 url("images/bg.png") center center / cover no-repeat;
+    }
+
+    .gallery-inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+
+    .gallery-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin: 0 0 clamp(18px, 2.5vw, 28px);
+      font-family: Tinos, "Times New Roman", Times, serif;
+      font-size: clamp(28px, 2.6vw, 36px);
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      color: #1a1a1a;
+    }
+
+    .gallery-title span {
+      width: 72px;
+      height: 1px;
+      background: #c4a15a;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1.85fr 0.72fr;
+      grid-template-rows: minmax(140px, 18vw) minmax(140px, 18vw);
+      gap: 12px;
+    }
+
+    .gallery-item {
+      position: relative;
+      margin: 0;
+      overflow: hidden;
+      background: #e8e0d2;
+    }
+
+    .gallery-item img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 900px) {
+      .gallery {
+        padding: 32px 14px 40px;
+      }
+
+      .gallery-title span {
+        width: 28px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: none;
+        gap: 10px;
+      }
+
+      .gallery-item {
+        aspect-ratio: 4 / 3;
+      }
+
+      .gallery-item:nth-child(3),
+      .gallery-item:nth-child(6) {
+        aspect-ratio: 3 / 4;
+      }
+
+      .gallery-item:nth-child(2),
+      .gallery-item:nth-child(5) {
+        grid-column: 1 / -1;
+        aspect-ratio: 16 / 9;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item,
+      .gallery-item:nth-child(2),
+      .gallery-item:nth-child(3),
+      .gallery-item:nth-child(5),
+      .gallery-item:nth-child(6) {
+        grid-column: auto;
+        aspect-ratio: 4 / 3;
+      }
+    }
+
+    .testimonials {
+      width: 100%;
+      padding: clamp(48px, 7vw, 80px) clamp(18px, 4vw, 48px);
+      background: #f6f1e6;
+      color: #1a4032;
+    }
+
+    .testimonials-inner {
+      width: min(1100px, 100%);
+      margin: 0 auto;
+    }
+
+    .testimonials-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin: 0 0 clamp(36px, 5vw, 56px);
+      font-family: Tinos, "Times New Roman", Times, serif;
+      font-size: clamp(28px, 2.6vw, 36px);
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      color: #1a1a1a;
+    }
+
+    .testimonials-title span {
+      width: 72px;
+      height: 1px;
+      background: #c4a15a;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(28px, 4vw, 48px);
+    }
+
+    .testimonial-card {
+      position: relative;
+      padding: 42px 28px 48px;
+      border: 1.5px solid #1a4032;
+      border-radius: 0;
+      background: #f6f1e6;
+      min-height: 220px;
+    }
+
+    .testimonial-card::after {
+      content: "";
+      position: absolute;
+      left: 32px;
+      bottom: -9px;
+      width: 18px;
+      height: 18px;
+      border-right: 1.5px solid #1a4032;
+      border-bottom: 1.5px solid #1a4032;
+      background: #f6f1e6;
+      transform: rotate(45deg);
+    }
+
+    .testimonial-quote-mark {
+      position: absolute;
+      top: 10px;
+      left: 18px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 64px;
+      line-height: 1;
+      color: #1a4032;
+      pointer-events: none;
+    }
+
+    .testimonial-card > p {
+      margin: 18px 0 0;
+      font-family: Tinos, "Times New Roman", Times, serif;
+      font-size: clamp(17px, 1.6vw, 20px);
+      line-height: 1.45;
+      color: #1a4032;
+      text-align: center;
+    }
+
+    .testimonial-author {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 168px;
+      padding: 8px 10px;
+      border-radius: 0;
+      z-index: 2;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+    }
+
+    .testimonial-author.bottom {
+      left: 50%;
+      bottom: -22px;
+      transform: translateX(-50%);
+      background: #0a221c;
+      color: #f3ead7;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .testimonial-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      flex: none;
+      display: grid;
+      place-items: center;
+      background: #111;
+      color: #f3ead7;
+      font-family: Cinzel, "Times New Roman", serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .testimonial-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      min-width: 0;
+    }
+
+    .testimonial-meta strong {
+      font-family: Tinos, "Times New Roman", Times, serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .testimonial-meta span {
+      font-family: Tinos, "Times New Roman", Times, serif;
+      font-size: 11px;
+      line-height: 1.2;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 800px) {
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .testimonials-title span {
+        width: 28px;
+      }
+    }
+
+    .video-section {
+      width: 100%;
+      padding: clamp(48px, 7vw, 88px) clamp(18px, 4vw, 48px);
+      background: #f6f1e6 url("images/about.png") center center / cover no-repeat;
+      color: #1a4032;
+    }
+
+    .video-inner {
+      position: relative;
+      z-index: 1;
+      width: min(980px, 100%);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .video-copy h2 {
+      margin: 0 0 22px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 600;
+      font-size: clamp(28px, 3.4vw, 42px);
+      line-height: 1.2;
+      color: #1a1a1a;
+    }
+
+    .video-copy p {
+      margin: 0 auto 16px;
+      max-width: 760px;
+      font-family: Tinos, "Times New Roman", Times, serif;
+      font-size: clamp(16px, 1.5vw, 19px);
+      line-height: 1.6;
+      color: #3a3a3a;
+    }
+
+    .video-copy p strong {
+      font-weight: 700;
+      color: #1a4032;
+    }
+
+    .video-tagline {
+      display: block;
+      width: 100%;
+      margin: 10px auto 28px !important;
+      font-family: "Playfair Display", Georgia, serif !important;
+      font-size: clamp(18px, 1.9vw, 24px) !important;
+      font-style: italic;
+      font-weight: 500;
+      line-height: 1.4;
+      text-align: center;
+      color: #b8893d !important;
+    }
+
+    .video-player {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      margin: 0 0 28px;
+      overflow: hidden;
+      background: #0f2a24;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .video-player iframe {
+      display: block;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
 
     .site-footer {
@@ -629,12 +1612,34 @@
       color: var(--ink);
     }
 
-    .discover-leaf {
+    .discover-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: min(260px, 100%);
+      margin-bottom: 16px;
+    }
+
+    .discover-mark > span {
+      flex: 1;
+      height: 1px;
+      background: #c6a15a;
+    }
+
+    .discover-crown {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #1c3b32;
+      display: grid;
+      place-items: center;
+      flex: none;
+    }
+
+    .discover-crown svg {
+      width: 22px;
+      height: 22px;
       display: block;
-      width: 58px;
-      height: 30px;
-      margin-bottom: 14px;
-      color: var(--gold);
     }
 
     .discover h2 {
@@ -779,13 +1784,33 @@
   </style>
 </head>
 <body>
+  <header class="site-header">
+    <div class="header-inner" id="headerInner">
+      <a class="header-logo" href="#top">
+        <img src="images/logo.png" alt="Karma Experience">
+      </a>
+      <button class="header-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="header-nav" id="siteNav" aria-label="Primary">
+        <a href="#top">Home</a>
+        <a href="#about">About</a>
+        <a href="#rooms">Rooms</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#testimonials">Testimonial</a>
+        <a class="header-nav-enquire" href="enquire.html">Enquire Now <span aria-hidden="true">→</span></a>
+      </nav>
+    </div>
+  </header>
   <main class="banner" id="top">
     <img class="photo" src="images/banner.png" alt="The Leaning Tower of Pisa and cathedral at sunset">
+    <img class="photo-mobile" src="images/gallery/mobile-banner.png" alt="The Leaning Tower of Pisa and cathedral at sunset">
     <img class="frame" alt="" data-src="images/frame.png">
-    <!-- <p class="logo">Your Logo</p> -->
+    <a class="banner-cta btn-enquire" href="enquire.html">Enquire Now <span aria-hidden="true">→</span></a>
     <div class="copy">
       <p class="kicker">Escape to</p>
       <h1>Tuscany</h1>
+      <span class="copy-leaf" aria-hidden="true"></span>
       <p class="sub">4-Night Romantic Break for Two</p>
       <div class="offers">
         <p class="price"><span>Just</span> <strong>£120</strong> <span>Per Couple</span></p>
@@ -814,18 +1839,22 @@
     <div class="discover-container">
       <img class="discover-photo" src="images/tuscany.png" alt="Tuscan villa terrace overlooking the hills at sunset">
       <div class="discover-copy">
-        <svg class="discover-leaf" viewBox="0 0 68 32" aria-hidden="true">
-          <path d="M6 27c14-2 26-9 38-20" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/>
-          <path d="M16 24.5c.4-4.8 3.6-8 7.6-9.6-3.4 3.2-5.6 6.4-6.8 10z" fill="currentColor"/>
-          <path d="M14.5 21c-2.2-3.2-2.4-6.4-.4-9.2 1.6 3.2 1.4 6.2.4 9.2z" fill="currentColor"/>
-          <path d="M26 19.5c1.6-4.2 5-6.6 8.8-7.4-3.8 2.2-6.4 4.8-8 8z" fill="currentColor"/>
-          <path d="M24.5 16.2c-1.6-3-1.4-5.8.6-8.2 1.2 2.8.8 5.4-.6 8.2z" fill="currentColor"/>
-          <path d="M36 14.2c2.2-3.6 5.8-5.2 9.6-5.6-4 1.6-6.8 3.8-8.6 6.8z" fill="currentColor"/>
-          <path d="M45.5 10c2-2.4 4.8-3.4 8-3.4-3.2 1.2-5.6 2.6-7.2 4.6z" fill="currentColor"/>
-        </svg>
+        <div class="discover-mark" aria-hidden="true">
+          <span></span>
+          <div class="discover-crown">
+            <svg viewBox="0 0 32 32">
+              <path fill="#e6c98a" d="M5 23.5h22v2.2H5z"/>
+              <path fill="#e6c98a" d="M6.2 22.2 8.4 12.4l4.2 4.4L16 8.2l3.4 8.6 4.2-4.4 2.2 9.8z"/>
+              <circle cx="8.4" cy="11.2" r="1.5" fill="#e6c98a"/>
+              <circle cx="16" cy="7.2" r="1.5" fill="#e6c98a"/>
+              <circle cx="23.6" cy="11.2" r="1.5" fill="#e6c98a"/>
+            </svg>
+          </div>
+          <span></span>
+        </div>
         <h2><span class="discover-kicker">Discover the beauty of</span><span>Tuscany</span></h2>
         <p>Discover the beauty of Tuscany with a four-night stay at <strong>Borgo di Colleoli</strong>, a historic estate surrounded by rolling hills and beautiful Italian countryside.</p>
-        <!-- <a class="discover-dates" href="#enquire">[CHECK AVAILABLE DATES]</a> -->
+        <!-- <a class="discover-dates" href="enquire.html">[CHECK AVAILABLE DATES]</a> -->
         <div class="discover-meta">
           <p class="discover-travel">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -881,7 +1910,118 @@
       </div>
     </div>
     <div class="about-enquire">
-      <a class="btn-enquire" href="#enquire">Enquire Now <span aria-hidden="true">→</span></a>
+      <a class="btn-enquire" href="enquire.html">Enquire Now <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+  <section class="accommodation" id="rooms" aria-label="Our Accommodations">
+    <div class="accommodation-inner">
+      <div class="accommodation-photos">
+        <figure class="polaroid polaroid-main">
+          <img src="images/gallery/room.webp" alt="Apartment-style double room at Borgo di Colleoli" loading="lazy">
+        </figure>
+        <aside class="polaroid polaroid-side" aria-label="Offer highlight">
+          <p class="offer-card-title">Explore Your Stay</p>
+          <p class="offer-card-price">£120 <span>: 4 Nights | 2 Adults</span></p>
+          <p class="offer-card-night">Just £30 Per Night</p>
+          <p class="offer-card-tag">Tuscan Escape for Two</p>
+        </aside>
+      </div>
+      <div class="accommodation-copy">
+        <p class="accommodation-eyebrow">Karma Borgo Di Colleoli, Tuscany</p>
+        <h2>Our Accommodations</h2>
+        <span class="accommodation-rule" aria-hidden="true"></span>
+        <p>The beautifully restored historic estate combines authentic Tuscan charm with spacious apartment-style accommodation, each featuring a fully equipped kitchen for added comfort and convenience.</p>
+        <a class="btn-dates" href="enquire.html">Enquire Now <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+  <section class="note-section" id="important-note" aria-label="Important Note">
+    <div class="note-paper">
+      <span class="note-tape" aria-hidden="true"></span>
+      <h2 class="note-title">Important Note</h2>
+      <ul class="note-list">
+        <li><em>*First Time Karma Guests Only.</em></li>
+        <li><strong>Room Availability</strong> – Accommodation will be allocated based on availability.</li>
+        <li><strong>Stay Period</strong> – Travel by December 2027</li>
+        <li><strong>Accommodation</strong> – This exclusive promotional stay is applicable for couples over 30 only.</li>
+        <li>Exclusive Holiday Preview Stay</li>
+        <li>No Cost / No Obligation</li>
+        <li>You and your partner will be treated to a preview of the Karma Group of Hotels &amp; Resorts during your stay.</li>
+      </ul>
+    </div>
+  </section>
+  <section class="gallery" id="gallery" aria-label="Gallery">
+    <div class="gallery-inner">
+      <h2 class="gallery-title"><span></span>Gallery<span></span></h2>
+      <div class="gallery-grid">
+        <figure class="gallery-item">
+          <img src="images/gallery/room.webp" alt="Apartment-style double room at Borgo di Colleoli" loading="lazy">
+        </figure>
+        <figure class="gallery-item">
+          <img src="images/gallery/gallery-1743497644-Borgo-di-colio-04.webp" alt="Borgo di Colleoli grounds and countryside" loading="lazy">
+        </figure>
+        <figure class="gallery-item">
+          <img src="images/gallery/gallery-1743497644-Borgo-di-colio-05.webp" alt="Borgo di Colleoli property detail" loading="lazy">
+        </figure>
+        <figure class="gallery-item">
+          <img src="images/gallery/gallery-1743497644-Borgo-di-colio-06.webp" alt="Borgo di Colleoli outdoor space" loading="lazy">
+        </figure>
+        <figure class="gallery-item">
+          <img src="images/gallery/gallery-1743497644-Borgo-di-colio-07.webp" alt="Borgo di Colleoli accommodation view" loading="lazy">
+        </figure>
+        <figure class="gallery-item">
+          <img src="images/gallery/gallery-17829926280-gallery-1.jpg" alt="Borgo di Colleoli gallery highlight" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </section>
+  <section class="video-section" id="video" aria-label="Discover the Beauty of Tuscany">
+    <div class="video-inner">
+      <div class="video-copy">
+        <h2>Discover the Beauty of Tuscany</h2>
+        <p>From the art and architecture of <strong>Florence</strong> and the world-famous Leaning Tower of <strong>Pisa</strong>, to rolling countryside, medieval villages and traditional Tuscan cuisine, there is something to discover in every direction.</p>
+        <p>Spend your days exploring some of Italy’s most celebrated destinations, discover local towns and restaurants, or simply relax and enjoy the surroundings of your Tuscan retreat.</p>
+      </div>
+      <p class="video-tagline">Borgo di Colleoli puts you in the heart of it all.</p>
+      <div class="video-player">
+        <iframe
+          src="https://www.youtube.com/embed/R6JKl-YVVpA?autoplay=1&mute=1&loop=1&playlist=R6JKl-YVVpA&playsinline=1&rel=0&modestbranding=1"
+          title="Discover the Beauty of Tuscany"
+          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+      <a class="video-enquire" href="enquire.html">Enquire Now <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+  <section class="testimonials" id="testimonials" aria-label="Testimonials">
+    <div class="testimonials-inner">
+      <h2 class="testimonials-title"><span></span>Testimonials<span></span></h2>
+      <div class="testimonials-grid">
+        <article class="testimonial-card">
+          <span class="testimonial-quote-mark" aria-hidden="true">“</span>
+          <p>Our stay at Borgo di Colleoli was pure magic — rolling hills, warm hospitality, and the perfect romantic escape for two.</p>
+          <div class="testimonial-author bottom">
+            <div class="testimonial-avatar" aria-hidden="true">EJ</div>
+            <div class="testimonial-meta">
+              <strong>Emma &amp; James</strong>
+              <span>London, UK</span>
+            </div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <span class="testimonial-quote-mark" aria-hidden="true">“</span>
+          <p>From the apartment-style comfort to exploring Tuscany’s countryside, this preview stay exceeded every expectation.</p>
+          <div class="testimonial-author bottom">
+            <div class="testimonial-avatar" aria-hidden="true">SR</div>
+            <div class="testimonial-meta">
+              <strong>Sophie &amp; Ryan</strong>
+              <span>Manchester, UK</span>
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
   <footer class="site-footer">
@@ -898,7 +2038,7 @@
       </div>
       <div class="footer-col">
         <h3><span class="diamond"></span>Other Links</h3>
-        <a class="mail-link" href="#enquire">
+        <a class="mail-link" href="enquire.html">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <rect x="3" y="5" width="18" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
             <path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.6"></path>
@@ -920,6 +2060,21 @@
   </footer>
   <script>
     (function () {
+      var headerInner = document.getElementById("headerInner");
+      var headerToggle = document.querySelector(".header-toggle");
+      if (headerToggle && headerInner) {
+        headerToggle.addEventListener("click", function () {
+          var open = headerInner.classList.toggle("is-open");
+          headerToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+        headerInner.querySelectorAll(".header-nav a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            headerInner.classList.remove("is-open");
+            headerToggle.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+
       var frame = document.querySelector(".frame");
       var img = new Image();
       img.onload = function () {

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You | Escape to Tuscany</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:wght@600;700&family=Tinos:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #f6f1e6 url("images/bg.png") center center / cover no-repeat fixed;
+      color: #1a4032;
+      font-family: Tinos, "Times New Roman", Times, serif;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      width: 100%;
+      background: rgba(246, 241, 230, 0.94);
+      border-bottom: 1px solid rgba(176, 138, 62, 0.28);
+      box-shadow: 0 8px 22px rgba(40, 28, 12, 0.08);
+    }
+
+    .header-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 18px;
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      padding: 0 18px;
+      min-height: 78px;
+      height: 78px;
+    }
+
+    .header-logo {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .header-logo img {
+      display: block;
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+    }
+
+    .header-nav {
+      --menu-h: 44px;
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      height: var(--menu-h);
+      padding: 0 14px;
+      border-radius: 0;
+      background: #1a4032;
+      box-shadow: 0 8px 18px rgba(10, 24, 40, 0.22);
+    }
+
+    .header-nav a {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 12px;
+      color: #fff;
+      font-family: Cinzel, "Times New Roman", serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .header-nav a:not(:last-child)::after {
+      content: "•";
+      position: absolute;
+      right: -2px;
+      color: rgba(210, 220, 230, 0.7);
+      font-size: 10px;
+      pointer-events: none;
+    }
+
+    .header-nav a:hover {
+      background: #245443;
+    }
+
+    .header-nav a:hover::after {
+      opacity: 0;
+    }
+
+    .header-enquire {
+      --menu-h: 44px;
+      display: inline-flex;
+      align-items: center;
+      height: var(--menu-h);
+    }
+
+    .btn-enquire {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 100%;
+      padding: 0 20px;
+      border: 1px solid #a67c22;
+      border-radius: 0;
+      background:
+        linear-gradient(105deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0) 38%),
+        linear-gradient(180deg, #fff3c0 0%, #f6d056 28%, #e0aa2c 62%, #c8921e 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -2px 0 rgba(122, 82, 16, 0.35),
+        0 6px 14px rgba(0, 0, 0, 0.18);
+      color: #1a4032;
+      font-family: Tinos, "Times New Roman", Times, serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-decoration: none;
+      text-transform: uppercase;
+      text-shadow: 0 1px 0 rgba(255, 248, 220, 0.55);
+      cursor: pointer;
+    }
+
+    .btn-enquire:hover {
+      background:
+        linear-gradient(105deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 38%),
+        linear-gradient(180deg, #fff8d4 0%, #f0c84a 28%, #d49a22 62%, #b88418 100%);
+      color: #0f2a22;
+    }
+
+    .header-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(26, 64, 50, 0.35);
+      background: rgba(246, 241, 230, 0.9);
+      color: #1a4032;
+      cursor: pointer;
+    }
+
+    .header-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 4px auto;
+      background: currentColor;
+    }
+
+    .thankyou-main {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      width: min(640px, 92%);
+      margin: 48px auto;
+      text-align: center;
+    }
+
+    .card {
+      width: 100%;
+      padding: 42px 28px;
+      background: #fff;
+      border: 1px solid rgba(176, 138, 62, 0.35);
+      box-shadow: 0 16px 40px rgba(40, 28, 12, 0.12);
+    }
+
+    .card h1 {
+      margin: 0 0 12px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(28px, 4vw, 40px);
+      color: #1a1a1a;
+    }
+
+    .card p {
+      margin: 0 0 24px;
+      font-size: 18px;
+      line-height: 1.55;
+      color: #3a3a3a;
+    }
+
+    .card .btn-enquire {
+      height: 48px;
+      padding: 0 24px;
+    }
+
+    .site-footer {
+      container-type: inline-size;
+      position: relative;
+      width: 100%;
+      margin-top: auto;
+      background: #f6f1e6;
+      color: #fff;
+    }
+
+    .footer-frame {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .footer-logo {
+      position: absolute;
+      left: 8%;
+      top: 8%;
+      width: 15%;
+      height: auto;
+    }
+
+    .footer-nav {
+      position: absolute;
+      right: 5%;
+      top: 22%;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .footer-col {
+      min-width: 12cqi;
+      padding: 0 2.2cqi;
+      border-left: 1px solid rgba(215, 181, 106, 0.85);
+    }
+
+    .footer-col:first-child {
+      border-left: 0;
+    }
+
+    .footer-col h3 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.55cqi;
+      margin-bottom: 1.1cqi;
+      font-family: "Segoe UI", Calibri, sans-serif;
+      font-size: 0.92cqi;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e4c98a;
+    }
+
+    .diamond {
+      width: 0.55cqi;
+      height: 0.55cqi;
+      background: #e4c98a;
+      transform: rotate(45deg);
+    }
+
+    .footer-col a,
+    .footer-col span {
+      display: block;
+      margin-top: 0.22cqi;
+      font-family: "Segoe UI", Calibri, sans-serif;
+      font-size: 1.02cqi;
+      line-height: 1.25;
+      color: #f7f3ea;
+      text-decoration: none;
+    }
+
+    .footer-col a:hover {
+      color: #e4c98a;
+    }
+
+    .mail-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6cqi;
+    }
+
+    .mail-link svg {
+      width: 1.5cqi;
+      height: 1.5cqi;
+      flex: none;
+      color: #e4c98a;
+    }
+
+    .footer-copy {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      bottom: 5%;
+      padding-top: 0.7cqi;
+      border-top: 1px solid rgba(215, 181, 106, 0.8);
+      font-family: "Segoe UI", Calibri, sans-serif;
+      font-size: 0.82cqi;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-align: center;
+      text-transform: uppercase;
+      color: #f3ead4;
+    }
+
+    @media (max-width: 980px) {
+      .header-inner {
+        grid-template-columns: auto auto 1fr;
+        height: 64px;
+        min-height: 64px;
+      }
+
+      .header-toggle {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .header-nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 18px;
+        right: 18px;
+        height: auto;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding: 10px;
+      }
+
+      .header-inner.is-open .header-nav {
+        display: flex;
+      }
+
+      .header-nav a {
+        justify-content: center;
+        padding: 10px 12px;
+      }
+
+      .header-nav a::after {
+        display: none;
+      }
+
+      .header-enquire {
+        justify-self: end;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .footer-logo {
+        left: 6%;
+        top: 6%;
+        width: 34%;
+      }
+
+      .footer-nav {
+        right: 3%;
+        top: 36%;
+      }
+
+      .footer-col {
+        min-width: 0;
+        padding: 0 8px;
+      }
+
+      .footer-col h3,
+      .footer-col a,
+      .footer-col span,
+      .footer-copy {
+        font-size: 10px;
+      }
+
+      .diamond {
+        width: 5px;
+        height: 5px;
+      }
+
+      .mail-link svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      .footer-copy {
+        letter-spacing: 0.06em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner" id="headerInner">
+      <button class="header-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
+        <span></span><span></span><span></span>
+      </button>
+      <a class="header-logo" href="index.html">
+        <img src="images/logo.png" alt="Karma Experience">
+      </a>
+      <nav class="header-nav" id="siteNav" aria-label="Primary">
+        <a href="index.html#top">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#rooms">Rooms</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#testimonials">Testimonial</a>
+      </nav>
+      <div class="header-enquire">
+        <a class="btn-enquire" href="enquire.html">Enquire Now <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="thankyou-main">
+    <div class="card">
+      <h1>Thank You</h1>
+      <p>Your enquiry has been received. Our team will contact you shortly to confirm available dates for your Tuscan escape.</p>
+      <a class="btn-enquire" href="index.html">Back to Home</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <img class="footer-frame" alt="" data-src="images/footer.png">
+    <img class="footer-logo" alt="Karma Club Experience" data-src="images/logo.png">
+    <nav class="footer-nav" aria-label="Footer">
+      <div class="footer-col">
+        <h3><span class="diamond"></span>Quick Links</h3>
+        <a href="index.html#top">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#rooms">Room</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#testimonials">Testimonials</a>
+      </div>
+      <div class="footer-col">
+        <h3><span class="diamond"></span>Other Links</h3>
+        <a class="mail-link" href="enquire.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+            <path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.6"></path>
+          </svg>
+          Enquire Now
+        </a>
+      </div>
+      <div class="footer-col">
+        <h3><span class="diamond"></span>Our Offices</h3>
+        <span>Germany</span>
+        <span>India</span>
+        <span>Indonesia</span>
+        <span>Philippines</span>
+        <span>Singapore</span>
+        <span>UK</span>
+      </div>
+    </nav>
+    <p class="footer-copy">Copyright © Karma Club Experience 2026. All rights reserved.</p>
+  </footer>
+
+  <script>
+    (function () {
+      var headerInner = document.getElementById("headerInner");
+      var headerToggle = document.querySelector(".header-toggle");
+      if (headerToggle && headerInner) {
+        headerToggle.addEventListener("click", function () {
+          var open = headerInner.classList.toggle("is-open");
+          headerToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+      }
+
+      var footerFrame = document.querySelector(".footer-frame");
+      var footerImg = new Image();
+      footerImg.onload = function () {
+        footerFrame.src = tintFooter(footerImg);
+      };
+      footerImg.src = footerFrame.getAttribute("data-src");
+
+      var logo = document.querySelector(".footer-logo");
+      var logoImg = new Image();
+      logoImg.onload = function () {
+        logo.src = cutLogo(logoImg);
+      };
+      logoImg.src = logo.getAttribute("data-src");
+
+      function cutLogo(source) {
+        var w = source.width;
+        var h = source.height;
+        var canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(source, 0, 0);
+        var image = ctx.getImageData(0, 0, w, h);
+        var d = image.data;
+        var i;
+        for (i = 0; i < d.length; i += 4) {
+          var r = d[i];
+          var g = d[i + 1];
+          var b = d[i + 2];
+          var max = r > g ? r : g;
+          if (b > max) max = b;
+          d[i + 3] = max < 32 ? 0 : Math.min(255, (max - 32) * 5);
+        }
+        ctx.putImageData(image, 0, 0);
+        return canvas.toDataURL("image/png");
+      }
+
+      function tintFooter(source) {
+        var crop = Math.round(source.height * 0.18);
+        var w = source.width;
+        var h = source.height - crop;
+        var canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(source, 0, crop, w, h, 0, 0, w, h);
+        var image = ctx.getImageData(0, 0, w, h);
+        var d = image.data;
+        var i;
+        for (i = 0; i < d.length; i += 4) {
+          var r = d[i];
+          var g = d[i + 1];
+          var b = d[i + 2];
+          var max = r > g ? r : g;
+          if (b > max) max = b;
+          var min = r < g ? r : g;
+          if (b < min) min = b;
+          if (min > 214 && (r - b) < 32 && g > 205) {
+            d[i] = 246;
+            d[i + 1] = 241;
+            d[i + 2] = 230;
+          }
+        }
+        ctx.putImageData(image, 0, 0);
+        return canvas.toDataURL("image/png");
+      }
+    })();
+  </script>
+</body>
+</html>

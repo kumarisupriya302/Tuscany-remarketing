@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enquire Now | Escape to Tuscany</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: #f6f1e6 url("images/bg.png") center center / cover no-repeat fixed;
+      color: #1a4032;
+      font-family: Tinos, "Times New Roman", Times, serif;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      width: 100%;
+      background: rgba(246, 241, 230, 0.94);
+      border-bottom: 1px solid rgba(176, 138, 62, 0.28);
+      box-shadow: 0 8px 22px rgba(40, 28, 12, 0.08);
+    }
+
+    .header-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 18px;
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      padding: 0 18px;
+      min-height: 78px;
+      height: 78px;
+    }
+
+    .header-logo {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .header-logo img {
+      display: block;
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+    }
+
+    .header-nav {
+      --menu-h: 44px;
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      height: var(--menu-h);
+      padding: 0 14px;
+      border-radius: 0;
+      background: #1a4032;
+      box-shadow: 0 8px 18px rgba(10, 24, 40, 0.22);
+    }
+
+    .header-nav a {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 12px;
+      color: #fff;
+      font-family: Cinzel, "Times New Roman", serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .header-nav a:not(:last-child)::after {
+      content: "•";
+      position: absolute;
+      right: -2px;
+      color: rgba(210, 220, 230, 0.7);
+      font-size: 10px;
+      pointer-events: none;
+    }
+
+    .header-nav a:hover {
+      background: #245443;
+    }
+
+    .header-nav a:hover::after {
+      opacity: 0;
+    }
+
+    .header-enquire {
+      --menu-h: 44px;
+      display: inline-flex;
+      align-items: center;
+      height: var(--menu-h);
+    }
+
+    .btn-enquire {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 100%;
+      padding: 0 20px;
+      border: 1px solid #a67c22;
+      border-radius: 0;
+      background:
+        linear-gradient(105deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0) 38%),
+        linear-gradient(180deg, #fff3c0 0%, #f6d056 28%, #e0aa2c 62%, #c8921e 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -2px 0 rgba(122, 82, 16, 0.35),
+        0 6px 14px rgba(0, 0, 0, 0.18);
+      color: #1a4032;
+      font-family: Tinos, "Times New Roman", Times, serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-decoration: none;
+      text-transform: uppercase;
+      text-shadow: 0 1px 0 rgba(255, 248, 220, 0.55);
+      cursor: pointer;
+    }
+
+    .btn-enquire:hover {
+      background:
+        linear-gradient(105deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 38%),
+        linear-gradient(180deg, #fff8d4 0%, #f0c84a 28%, #d49a22 62%, #b88418 100%);
+      color: #0f2a22;
+    }
+
+    .header-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(26, 64, 50, 0.35);
+      background: rgba(246, 241, 230, 0.9);
+      color: #1a4032;
+      cursor: pointer;
+    }
+
+    .header-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 4px auto;
+      background: currentColor;
+    }
+
+    .enquire-main {
+      width: min(1180px, 94%);
+      margin: 36px auto 56px;
+    }
+
+    .enquire-layout {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.9fr) minmax(320px, 1.2fr);
+      gap: clamp(20px, 3vw, 36px);
+      align-items: start;
+    }
+
+    .room-card {
+      background: #fff;
+      border: 1px solid rgba(176, 138, 62, 0.28);
+      box-shadow: 0 14px 34px rgba(40, 28, 12, 0.12);
+      overflow: hidden;
+    }
+
+    .room-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .room-card-body {
+      padding: 22px 22px 26px;
+    }
+
+    .room-card h2 {
+      margin: 0 0 6px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(24px, 2.4vw, 30px);
+      line-height: 1.2;
+      color: #1a2a3a;
+    }
+
+    .room-card h2 span {
+      font-weight: 500;
+      color: #6d6d6d;
+      font-size: 0.78em;
+    }
+
+    .room-meta {
+      margin: 0 0 16px;
+      font-size: 16px;
+      color: #6d6d6d;
+    }
+
+    .room-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .room-card li {
+      position: relative;
+      padding: 0 0 10px 14px;
+      font-size: 15px;
+      line-height: 1.45;
+      color: #3a3a3a;
+    }
+
+    .room-card li::before {
+      content: "*";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #b08a3e;
+      font-weight: 700;
+    }
+
+    .enquire-form-wrap {
+      background: #fff;
+      border: 1px solid rgba(176, 138, 62, 0.28);
+      box-shadow: 0 14px 34px rgba(40, 28, 12, 0.12);
+      padding: clamp(22px, 3vw, 34px);
+    }
+
+    .enquire-form-wrap h1 {
+      margin: 0 0 22px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(26px, 2.8vw, 34px);
+      color: #1a2a3a;
+    }
+
+    .enquire-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-row.full {
+      grid-template-columns: 1fr;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field label {
+      font-family: Cinzel, "Times New Roman", serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #b8893d;
+    }
+
+    .field label .req {
+      color: #b8893d;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid rgba(26, 64, 50, 0.28);
+      border-radius: 6px;
+      background: #fff;
+      color: #1a2a3a;
+      font-family: Tinos, "Times New Roman", Times, serif;
+      font-size: 16px;
+    }
+
+    .field input::placeholder {
+      color: #9aa0a6;
+    }
+
+    .iti {
+      width: 100%;
+    }
+
+    .iti__flag-container {
+      z-index: 5;
+    }
+
+    .field input.is-invalid,
+    .field select.is-invalid,
+    .check input.is-invalid {
+      border-color: #c0392b;
+    }
+
+    .field input.is-valid,
+    .field select.is-valid {
+      border-color: #1a4032;
+    }
+
+    .invalid-feedback {
+      color: #c0392b;
+      font-size: 13px;
+      line-height: 1.35;
+      margin-top: 2px;
+    }
+
+    body.submitting {
+      cursor: wait;
+    }
+
+    .checks {
+      display: grid;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .check {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 10px;
+      align-items: start;
+      font-size: 14px;
+      line-height: 1.45;
+      color: #3a3a3a;
+    }
+
+    .check input {
+      margin-top: 3px;
+      accent-color: #1a4032;
+    }
+
+    .enquire-form .btn-enquire {
+      width: 100%;
+      height: 52px;
+      margin-top: 8px;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    .site-footer {
+      container-type: inline-size;
+      position: relative;
+      width: 100%;
+      margin-top: 0;
+      background: #f6f1e6;
+      color: #fff;
+    }
+
+    .footer-frame {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .footer-logo {
+      position: absolute;
+      left: 8%;
+      top: 8%;
+      width: 15%;
+      height: auto;
+    }
+
+    .footer-nav {
+      position: absolute;
+      right: 5%;
+      top: 22%;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .footer-col {
+      min-width: 12cqi;
+      padding: 0 2.2cqi;
+      border-left: 1px solid rgba(215, 181, 106, 0.85);
+    }
+
+    .footer-col:first-child {
+      border-left: 0;
+    }
+
+    .footer-col h3 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.55cqi;
+      margin-bottom: 1.1cqi;
+      font-family: "Segoe UI", Calibri, sans-serif;
+      font-size: 0.92cqi;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e4c98a;
+    }
+
+    .diamond {
+      width: 0.55cqi;
+      height: 0.55cqi;
+      background: #e4c98a;
+      transform: rotate(45deg);
+    }
+
+    .footer-col a,
+    .footer-col span {
+      display: block;
+      margin-top: 0.22cqi;
+      font-family: "Segoe UI", Calibri, sans-serif;
+      font-size: 1.02cqi;
+      line-height: 1.25;
+      color: #f7f3ea;
+      text-decoration: none;
+    }
+
+    .footer-col a:hover {
+      color: #e4c98a;
+    }
+
+    .mail-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6cqi;
+    }
+
+    .mail-link svg {
+      width: 1.5cqi;
+      height: 1.5cqi;
+      flex: none;
+      color: #e4c98a;
+    }
+
+    .footer-copy {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      bottom: 5%;
+      padding-top: 0.7cqi;
+      border-top: 1px solid rgba(215, 181, 106, 0.8);
+      font-family: "Segoe UI", Calibri, sans-serif;
+      font-size: 0.82cqi;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-align: center;
+      text-transform: uppercase;
+      color: #f3ead4;
+    }
+
+    @media (max-width: 980px) {
+      .header-inner {
+        grid-template-columns: auto auto 1fr;
+        height: 64px;
+        min-height: 64px;
+      }
+
+      .header-toggle {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .header-nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 18px;
+        right: 18px;
+        height: auto;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding: 10px;
+      }
+
+      .header-inner.is-open .header-nav {
+        display: flex;
+      }
+
+      .header-nav a {
+        justify-content: center;
+        padding: 10px 12px;
+      }
+
+      .header-nav a::after {
+        display: none;
+      }
+
+      .header-enquire {
+        justify-self: end;
+      }
+
+      .enquire-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-field {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-logo {
+        left: 6%;
+        top: 6%;
+        width: 34%;
+      }
+
+      .footer-nav {
+        right: 3%;
+        top: 36%;
+      }
+
+      .footer-col {
+        min-width: 0;
+        padding: 0 8px;
+      }
+
+      .footer-col h3,
+      .footer-col a,
+      .footer-col span,
+      .footer-copy {
+        font-size: 10px;
+      }
+
+      .diamond {
+        width: 5px;
+        height: 5px;
+      }
+
+      .mail-link svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      .footer-copy {
+        letter-spacing: 0.06em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner" id="headerInner">
+      <button class="header-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
+        <span></span><span></span><span></span>
+      </button>
+      <a class="header-logo" href="index.html">
+        <img src="images/logo.png" alt="Karma Experience">
+      </a>
+      <nav class="header-nav" id="siteNav" aria-label="Primary">
+        <a href="index.html#top">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#rooms">Rooms</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#testimonials">Testimonial</a>
+      </nav>
+      <div class="header-enquire">
+        <a class="btn-enquire" href="enquire.html">Enquire Now <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="enquire-main">
+    <div class="enquire-layout">
+      <aside class="room-card">
+        <img src="images/gallery/room.webp" alt="Apartment-style double room at Borgo di Colleoli">
+        <div class="room-card-body">
+          <h2>Double Room <span>- Total £120</span></h2>
+          <p class="room-meta">4 Nights | 2 adults</p>
+          <ul>
+            <li>Offer exclusively for couples aged 30+</li>
+            <li>Not valid for single travellers or group bookings</li>
+            <li>Available to first-time Karma guests only</li>
+            <li>Travel by December 2027</li>
+            <li>Submit an enquiry and our team will contact you to confirm available dates</li>
+          </ul>
+        </div>
+      </aside>
+
+      <section class="enquire-form-wrap" aria-label="Enquiry form">
+        <h1>Enter Your Details</h1>
+        <form id="user-details-form" class="enquire-form" action="process-form.php" method="post" novalidate>
+          <input type="hidden" id="PhoneFormatLsq" name="PhoneFormatLsq" value="">
+          <div class="form-row">
+            <div class="field">
+              <label for="firstname">First Name <span class="req">*</span></label>
+              <input id="firstname" name="firstname" type="text" placeholder="First name">
+            </div>
+            <div class="field">
+              <label for="lastname">Last Name <span class="req">*</span></label>
+              <input id="lastname" name="lastname" type="text" placeholder="Last name">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="email">Email Address <span class="req">*</span></label>
+              <input id="email" name="email" type="email" placeholder="you@email.com">
+            </div>
+            <div class="field">
+              <label for="setMobile1">Phone Number <span class="req">*</span></label>
+              <input id="setMobile1" name="setMobile1" type="tel" placeholder="Phone number">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="dob">Date of Birth <span class="req">*</span></label>
+              <input id="dob" name="dob" type="date" placeholder="mm/dd/yyyy">
+            </div>
+            <div class="field">
+              <label for="maritalStatus">Marital Status <span class="req">*</span></label>
+              <select id="maritalStatus" name="maritalStatus">
+                <option value="">Select Status</option>
+                <option>Married / co-living</option>
+                <option>Unmarried</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="passport">Nationality <span class="req">*</span></label>
+              <select id="passport" name="passport">
+                <option value="">Select Nationality</option>
+                <option>British</option>
+                <option>Australian</option>
+                <option>Indian</option>
+                <option>American</option>
+                <option>Canadian</option>
+                <option>Irish</option>
+                <option>German</option>
+                <option>French</option>
+                <option>Italian</option>
+                <option>Spanish</option>
+                <option>Dutch</option>
+                <option>Belgian</option>
+                <option>Swiss</option>
+                <option>Austrian</option>
+                <option>Swedish</option>
+                <option>Norwegian</option>
+                <option>Danish</option>
+                <option>Finnish</option>
+                <option>Portuguese</option>
+                <option>Polish</option>
+                <option>Singaporean</option>
+                <option>Malaysian</option>
+                <option>Indonesian</option>
+                <option>Filipino</option>
+                <option>Thai</option>
+                <option>Japanese</option>
+                <option>Chinese</option>
+                <option>New Zealander</option>
+                <option>South African</option>
+                <option>Emirati</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="county">County <span class="req">*</span></label>
+              <input id="county" name="county" type="text" placeholder="County">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="town">Town <span class="req">*</span></label>
+              <input id="town" name="town" type="text" placeholder="Town">
+            </div>
+            <div class="field">
+              <label for="travelMonth">Preferred Month <span class="req">*</span></label>
+              <select id="travelMonth" name="travelMonth">
+                <option value="">Select a month</option>
+                <option>January 2026</option>
+                <option>February 2026</option>
+                <option>March 2026</option>
+                <option>April 2026</option>
+                <option>May 2026</option>
+                <option>June 2026</option>
+                <option>July 2026</option>
+                <option>August 2026</option>
+                <option>September 2026</option>
+                <option>October 2026</option>
+                <option>November 2026</option>
+                <option>December 2026</option>
+                <option>January 2027</option>
+                <option>February 2027</option>
+                <option>March 2027</option>
+                <option>April 2027</option>
+                <option>May 2027</option>
+                <option>June 2027</option>
+                <option>July 2027</option>
+                <option>August 2027</option>
+                <option>September 2027</option>
+                <option>October 2027</option>
+                <option>November 2027</option>
+                <option>December 2027</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="checks">
+            <label class="check">
+              <input type="checkbox" name="marketing_consent" value="1">
+              <span>Allow Karma Experience/Karma Group related brands to communicate with me via sms/e-mail/call/WhatsApp/RCS during and after your submission on this promotional offer.</span>
+            </label>
+            <label class="check">
+              <input type="checkbox" name="accept-terms" value="1">
+              <span>I understand that this offer is not valid for Karma Group members, past guests of Karma Group or its partner properties. It also does not apply to single travelers, groups, multiple families, or employees of Karma.</span>
+            </label>
+          </div>
+
+          <button class="btn-enquire" type="submit">Submit Now</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <img class="footer-frame" alt="" data-src="images/footer.png">
+    <img class="footer-logo" alt="Karma Club Experience" data-src="images/logo.png">
+    <nav class="footer-nav" aria-label="Footer">
+      <div class="footer-col">
+        <h3><span class="diamond"></span>Quick Links</h3>
+        <a href="index.html#top">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#rooms">Room</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#testimonials">Testimonials</a>
+      </div>
+      <div class="footer-col">
+        <h3><span class="diamond"></span>Other Links</h3>
+        <a class="mail-link" href="enquire.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+            <path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.6"></path>
+          </svg>
+          Enquire Now
+        </a>
+      </div>
+      <div class="footer-col">
+        <h3><span class="diamond"></span>Our Offices</h3>
+        <span>Germany</span>
+        <span>India</span>
+        <span>Indonesia</span>
+        <span>Philippines</span>
+        <span>Singapore</span>
+        <span>UK</span>
+      </div>
+    </nav>
+    <p class="footer-copy">Copyright © Karma Club Experience 2026. All rights reserved.</p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+  <script>
+    (function () {
+      var headerInner = document.getElementById("headerInner");
+      var headerToggle = document.querySelector(".header-toggle");
+      if (headerToggle && headerInner) {
+        headerToggle.addEventListener("click", function () {
+          var open = headerInner.classList.toggle("is-open");
+          headerToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+      }
+
+      var footerFrame = document.querySelector(".footer-frame");
+      var footerImg = new Image();
+      footerImg.onload = function () {
+        footerFrame.src = tintFooter(footerImg);
+      };
+      footerImg.src = footerFrame.getAttribute("data-src");
+
+      var logo = document.querySelector(".footer-logo");
+      var logoImg = new Image();
+      logoImg.onload = function () {
+        logo.src = cutLogo(logoImg);
+      };
+      logoImg.src = logo.getAttribute("data-src");
+
+      function cutLogo(source) {
+        var w = source.width;
+        var h = source.height;
+        var canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(source, 0, 0);
+        var image = ctx.getImageData(0, 0, w, h);
+        var d = image.data;
+        var i;
+        for (i = 0; i < d.length; i += 4) {
+          var r = d[i];
+          var g = d[i + 1];
+          var b = d[i + 2];
+          var max = r > g ? r : g;
+          if (b > max) max = b;
+          d[i + 3] = max < 32 ? 0 : Math.min(255, (max - 32) * 5);
+        }
+        ctx.putImageData(image, 0, 0);
+        return canvas.toDataURL("image/png");
+      }
+
+      function tintFooter(source) {
+        var crop = Math.round(source.height * 0.18);
+        var w = source.width;
+        var h = source.height - crop;
+        var canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(source, 0, crop, w, h, 0, 0, w, h);
+        var image = ctx.getImageData(0, 0, w, h);
+        var d = image.data;
+        var i;
+        for (i = 0; i < d.length; i += 4) {
+          var r = d[i];
+          var g = d[i + 1];
+          var b = d[i + 2];
+          var max = r > g ? r : g;
+          if (b > max) max = b;
+          var min = r < g ? r : g;
+          if (b < min) min = b;
+          if (min > 214 && (r - b) < 32 && g > 205) {
+            d[i] = 246;
+            d[i + 1] = 241;
+            d[i + 2] = 230;
+          }
+        }
+        ctx.putImageData(image, 0, 0);
+        return canvas.toDataURL("image/png");
+      }
+    })();
+
+    var phoneInput = document.querySelector("#setMobile1");
+    var iti = window.intlTelInput(phoneInput, {
+      initialCountry: "gb",
+      preferredCountries: ["gb", "au", "in", "us", "ie", "sg"],
+      separateDialCode: true,
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+    });
+
+    jQuery.validator.addMethod("lettersonly", function (value, element) {
+      return this.optional(element) || /^[a-zA-Z\s'-]+$/.test(value);
+    }, "Please enter a valid first name");
+
+    jQuery.validator.addMethod("notAllSame", function (value) {
+      return !/^(\d)\1+$/.test(value);
+    }, "Please enter a valid mobile number");
+
+    jQuery.validator.addMethod("age35plus", function (value, element) {
+      if (this.optional(element) || !value) return true;
+      var dob = new Date(value);
+      if (isNaN(dob.getTime())) return false;
+      var today = new Date();
+      var age = today.getFullYear() - dob.getFullYear();
+      var monthDiff = today.getMonth() - dob.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+        age--;
+      }
+      return age >= 35;
+    }, "This offer is valid for 35 years and above");
+
+    $("#user-details-form").validate({
+      onfocusout: function (element) {
+        $(element).valid();
+      },
+      rules: {
+        firstname: {
+          required: true,
+          lettersonly: true
+        },
+        lastname: {
+          required: true
+        },
+        dob: {
+          required: true,
+          date: true,
+          age35plus: true
+        },
+        email: {
+          required: true,
+          email: true
+        },
+        setMobile1: {
+          required: true,
+          digits: true,
+          minlength: 9,
+          maxlength: 11,
+          notAllSame: true
+        },
+        maritalStatus: {
+          required: true
+        },
+        passport: {
+          required: true
+        },
+        county: {
+          required: true
+        },
+        town: {
+          required: true
+        },
+        travelMonth: {
+          required: true
+        },
+        "accept-terms": {
+          required: true
+        }
+      },
+      messages: {
+        firstname: {
+          required: "Please enter your first name",
+          lettersonly: "Please enter a valid first name"
+        },
+        lastname: {
+          required: "Please enter your last name"
+        },
+        dob: {
+          required: "Please enter a valid date of birth",
+          date: "Please enter a valid date of birth",
+          age35plus: "This offer is valid for 35 years and above"
+        },
+        email: {
+          required: "Please enter a valid email address",
+          email: "Please enter a valid email address"
+        },
+        setMobile1: {
+          required: "Please enter your mobile number",
+          digits: "Please enter only digits",
+          minlength: "Mobile number must be at least 9 digits",
+          maxlength: "Mobile number cannot exceed 11 digits"
+        },
+        maritalStatus: {
+          required: "Please select your marital status"
+        },
+        passport: {
+          required: "Please select your nationality"
+        },
+        county: {
+          required: "Please enter your county"
+        },
+        town: {
+          required: "Please enter your town"
+        },
+        travelMonth: {
+          required: "Please select your month of travel"
+        },
+        "accept-terms": {
+          required: "You must accept the terms"
+        }
+      },
+      onkeyup: false,
+      errorElement: "div",
+      errorPlacement: function (error, element) {
+        error.addClass("invalid-feedback");
+        if (element.prop("type") === "checkbox") {
+          error.insertAfter(element.parent());
+        } else if (element.attr("id") === "setMobile1") {
+          error.insertAfter(element.closest(".iti").length ? element.closest(".iti") : element);
+        } else {
+          error.insertAfter(element);
+        }
+      },
+      highlight: function (element) {
+        $(element).addClass("is-invalid").removeClass("is-valid");
+      },
+      unhighlight: function (element) {
+        $(element).addClass("is-valid").removeClass("is-invalid");
+      },
+      submitHandler: function (form) {
+        var countryData = iti.getSelectedCountryData();
+        var dialCode = countryData.dialCode;
+        var fullNumber = iti.getNumber();
+        var nationalNumber = fullNumber.replace("+" + dialCode, "");
+        var formattedNumber = "+" + dialCode + "-" + nationalNumber;
+        document.getElementById("PhoneFormatLsq").value = formattedNumber;
+
+        var submitBtn = $(form).find('button[type="submit"]');
+        submitBtn.prop("disabled", true);
+        submitBtn.html("Processing...");
+        document.body.classList.add("submitting");
+        form.submit();
+      }
+    });
+
+    $("#dob").on("change blur", function () {
+      $(this).valid();
+    });
+  </script>
+</body>
+</html>
